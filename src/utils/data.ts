@@ -19,14 +19,6 @@ export const portfolioData: PortfolioItem[] = [
   },
   {
     id: 3,
-    title: 'NDA Project',
-    description: 'Landing-page for NDA project',
-    image: '/src/assets/images/nda.jpg',
-    url: 'https://dtytarenko.github.io/template-landing-page/site/index.html',
-    technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Fetch API', 'PHP', 'Gulp']
-  },
-  {
-    id: 4,
     title: 'Cadeauconcepten.nl',
     description: 'Landing-page for Cadeau Concepten NL (Amsterdam)',
     image: '/src/assets/images/cc.jpg',
@@ -34,7 +26,7 @@ export const portfolioData: PortfolioItem[] = [
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp']
   },
   {
-    id: 5,
+    id: 4,
     title: 'Cadeaubon.nl',
     description: 'E-commerce site based on Drupal for Cadeau Concepten NL (Amsterdam)',
     image: '/src/assets/images/cadeaubon.jpg',
@@ -42,28 +34,12 @@ export const portfolioData: PortfolioItem[] = [
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
   {
-    id: 6,
+    id: 5,
     title: 'UAA',
     description: 'Website for Association of Advocates of Ukraine',
     image: '/src/assets/images/aau.jpg',
     url: 'https://www.uaa.org.ua/',
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'October CMS']
-  },
-  {
-    id: 7,
-    title: 'Right to Protection',
-    description: 'Website for Right to Protection',
-    image: '/src/assets/images/r2protection.jpg',
-    url: 'http://r2p.org.ua/en/',
-    technologies: ['HTML5', 'CSS3', 'WordPress', 'JavaScript']
-  },
-  {
-    id: 8,
-    title: 'ElBaraka',
-    description: 'Website for Elbaraka Ukraine',
-    image: '/src/assets/images/el-baraka.jpg',
-    url: 'https://elbaraka.com.ua/',
-    technologies: ['HTML5', 'CSS3', 'JavaScript', 'WordPress', 'WooCommerce']
   }
 ];
 

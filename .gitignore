@@ -28,3 +28,6 @@ temp_backup
 
 # Claude Code
 .claude
+
+# BlenderKit
+blenderkit-v3.17.0.251008/

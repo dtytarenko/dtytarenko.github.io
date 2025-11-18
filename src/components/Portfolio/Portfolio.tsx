@@ -1,5 +1,5 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
-import { Navigation, Pagination, Autoplay, EffectCoverflow } from 'swiper/modules';
+import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
 import { portfolioData } from '../../utils/data';
 import styles from './Portfolio.module.scss';
@@ -8,8 +8,6 @@ import styles from './Portfolio.module.scss';
 import 'swiper/css';
 // @ts-ignore
 import 'swiper/css/navigation';
-// @ts-ignore
-import 'swiper/css/pagination';
 // @ts-ignore
 import 'swiper/css/effect-coverflow';
 
@@ -34,11 +32,13 @@ function Portfolio() {
           transition={{ duration: 0.8, delay: 0.2 }}
         >
           <Swiper
-            modules={[Navigation, Pagination, Autoplay, EffectCoverflow]}
+            modules={[Navigation, Autoplay, EffectCoverflow]}
             spaceBetween={30}
             slidesPerView={1}
             navigation
-            pagination={{ clickable: true }}
+            centeredSlides={false}
+            initialSlide={0}
+            watchSlidesProgress={true}
             autoplay={{
               delay: 5000,
               disableOnInteraction: false,
@@ -50,6 +50,7 @@ function Portfolio() {
               depth: 100,
               modifier: 1,
               slideShadows: false,
+              scale: 0.9,
             }}
             breakpoints={{
               640: {

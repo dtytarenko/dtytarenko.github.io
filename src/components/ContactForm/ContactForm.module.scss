@@ -83,10 +83,11 @@
   &::placeholder {
     color: var(--color-text-secondary);
   }
+}
 
-  &Error {
-    border-color: #ef4444;
-  }
+.inputError,
+.textareaError {
+  border-color: #ef4444;
 }
 
 .textarea {

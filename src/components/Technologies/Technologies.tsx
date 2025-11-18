@@ -1,5 +1,7 @@
+import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import { technologiesData } from '../../utils/data';
+import ThreeBackground from '../Hero/ThreeBackground';
 import styles from './Technologies.module.scss';
 
 // Icon mapping - використовуємо емодзі як fallback
@@ -44,6 +46,12 @@ function Technologies() {
 
   return (
     <section className={styles.technologies} id="technologies">
+      <div className={styles.canvas}>
+        <Canvas camera={{ position: [0, 0, 5] }}>
+          <ThreeBackground />
+        </Canvas>
+      </div>
+
       <div className="container">
         <motion.h2
           className={styles.title}

@@ -47,15 +47,12 @@ function App() {
 
       <footer style={{
         textAlign: 'center',
-        padding: 'var(--spacing-xl) 0',
+        padding: 'var(--spacing-md) 0',
         background: 'var(--color-bg-secondary)',
         color: 'var(--color-text-secondary)',
         fontSize: 'var(--font-size-sm)'
       }}>
         <p>© {new Date().getFullYear()} Dmytro Tytarenko. All rights reserved.</p>
-        <p style={{ marginTop: 'var(--spacing-xs)' }}>
-          Built with React, TypeScript, Three.js & ❤️
-        </p>
       </footer>
     </div>
   );
