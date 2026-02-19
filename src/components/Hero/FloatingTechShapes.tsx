@@ -99,7 +99,6 @@ function FloatingTechShapes() {
     if (linesRef.current && meshRef.current) {
       const meshPositions = meshRef.current.geometry.attributes.position;
       const segments = 100;
-      const size = 20;
       const lines: number[] = [];
 
       // Recreate vertical lines with updated heights

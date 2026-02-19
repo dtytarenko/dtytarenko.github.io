@@ -65,6 +65,7 @@ function DNABackground() {
     }
 
     function draw() {
+      if (!ctx) return;
       ctx.clearRect(0, 0, W, H);
       time += 0.012;
 

@@ -11,7 +11,7 @@ export interface Technology {
   id: number;
   name: string;
   icon: string;
-  category: 'frontend' | 'backend' | 'tools' | 'design';
+  category: 'frontend' | 'backend' | 'tools' | 'design' | 'marketing';
 }
 
 export interface ContactFormData {

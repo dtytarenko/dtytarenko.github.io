@@ -70,7 +70,7 @@ function WorldMapBackground() {
     const connections: Array<{ progress: number; speed: number; cityIndex: number }> = [];
 
     // Initialize connections
-    cities.forEach((city, index) => {
+    cities.forEach((_, index) => {
       if (index === 0) return; // Skip Kyiv itself
       connections.push({
         progress: Math.random(),
