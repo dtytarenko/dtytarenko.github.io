@@ -1,11 +1,18 @@
 import { PortfolioItem, Technology } from '../types';
 
+// Import images
+import giftcardsImg from '../assets/images/giftcards.jpg';
+import dinercadeauImg from '../assets/images/dinercadeau.jpg';
+import ccImg from '../assets/images/cc.jpg';
+import cadeaubonImg from '../assets/images/cadeaubon.jpg';
+import aauImg from '../assets/images/aau.jpg';
+
 export const portfolioData: PortfolioItem[] = [
   {
     id: 1,
     title: 'Giftcards.nl',
     description: 'E-commerce site based on Drupal with 200,000+ unique visitors per month for Cadeau Concepten NL (Amsterdam)',
-    image: '/src/assets/images/giftcards.jpg',
+    image: giftcardsImg,
     url: 'http://giftcards.nl/',
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
@@ -13,7 +20,7 @@ export const portfolioData: PortfolioItem[] = [
     id: 2,
     title: 'Dinercadeau.nl',
     description: 'E-commerce site based on Drupal for Cadeau Concepten NL (Amsterdam)',
-    image: '/src/assets/images/dinercadeau.jpg',
+    image: dinercadeauImg,
     url: 'https://www.diner-cadeau.nl/',
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
@@ -21,7 +28,7 @@ export const portfolioData: PortfolioItem[] = [
     id: 3,
     title: 'Cadeauconcepten.nl',
     description: 'Landing-page for Cadeau Concepten NL (Amsterdam)',
-    image: '/src/assets/images/cc.jpg',
+    image: ccImg,
     url: 'https://www.cadeauconcepten.nl/',
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp']
   },
@@ -29,7 +36,7 @@ export const portfolioData: PortfolioItem[] = [
     id: 4,
     title: 'Cadeaubon.nl',
     description: 'E-commerce site based on Drupal for Cadeau Concepten NL (Amsterdam)',
-    image: '/src/assets/images/cadeaubon.jpg',
+    image: cadeaubonImg,
     url: 'https://www.cadeaubon.nl/',
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
@@ -37,7 +44,7 @@ export const portfolioData: PortfolioItem[] = [
     id: 5,
     title: 'UAA',
     description: 'Website for Association of Advocates of Ukraine',
-    image: '/src/assets/images/aau.jpg',
+    image: aauImg,
     url: 'https://www.uaa.org.ua/',
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'October CMS']
   }

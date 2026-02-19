@@ -1,10 +1,13 @@
+import { lazy, Suspense } from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
-import { Canvas } from '@react-three/fiber';
 import { portfolioData } from '../../utils/data';
-import ThreeBackground from '../Hero/ThreeBackground';
 import styles from './Portfolio.module.scss';
+
+// Lazy load Three.js компоненти
+const Canvas = lazy(() => import('@react-three/fiber').then(module => ({ default: module.Canvas })));
+const ThreeBackground = lazy(() => import('../Hero/ThreeBackground'));
 
 // @ts-ignore - CSS imports don't have types
 import 'swiper/css';
@@ -17,9 +20,13 @@ function Portfolio() {
   return (
     <section className={styles.portfolio} id="portfolio">
       <div className={styles.canvas}>
-        <Canvas camera={{ position: [0, 0, 5] }}>
-          <ThreeBackground />
-        </Canvas>
+        <Suspense fallback={<div style={{ background: '#000' }} />}>
+          <Canvas camera={{ position: [0, 0, 5] }}>
+            <Suspense fallback={null}>
+              <ThreeBackground />
+            </Suspense>
+          </Canvas>
+        </Suspense>
       </div>
 
       <div className="container">

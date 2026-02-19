@@ -1,7 +1,10 @@
-import { Canvas } from '@react-three/fiber';
+import { lazy, Suspense } from 'react';
 import { motion } from 'framer-motion';
-import FluidGradient from './FluidGradient';
 import styles from './Hero.module.scss';
+
+// Lazy load Three.js компоненти
+const Canvas = lazy(() => import('@react-three/fiber').then(module => ({ default: module.Canvas })));
+const FluidGradient = lazy(() => import('./FluidGradient'));
 
 function Hero() {
   const scrollToPortfolio = () => {
@@ -79,9 +82,13 @@ function Hero() {
   return (
     <section className={styles.hero} id="hero">
       <div className={styles.canvas}>
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} orthographic={false}>
-          <FluidGradient />
-        </Canvas>
+        <Suspense fallback={<div style={{ background: '#000' }} />}>
+          <Canvas camera={{ position: [0, 0, 5], fov: 75 }} orthographic={false}>
+            <Suspense fallback={null}>
+              <FluidGradient />
+            </Suspense>
+          </Canvas>
+        </Suspense>
       </div>
 
       <motion.div
