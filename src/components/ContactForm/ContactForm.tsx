@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { ContactFormData } from '../../types';
+import { sendToTelegram } from '../../utils/telegram';
 import MatrixBackground from '../Hero/MatrixBackground';
 import styles from './ContactForm.module.scss';
 
@@ -20,21 +21,22 @@ function ContactForm() {
     setIsSubmitting(true);
 
     try {
-      // Симулюємо відправку форми
-      // В реальному проекті тут буде API запит
-      await new Promise((resolve) => setTimeout(resolve, 1500));
+      const success = await sendToTelegram(data);
 
-      console.log('Form data:', data);
+      if (success) {
+        setIsSuccess(true);
+        reset();
 
-      setIsSuccess(true);
-      reset();
-
-      // Ховаємо success message через 5 секунд
-      setTimeout(() => {
-        setIsSuccess(false);
-      }, 5000);
+        // Ховаємо success message через 5 секунд
+        setTimeout(() => {
+          setIsSuccess(false);
+        }, 5000);
+      } else {
+        alert('Failed to send message. Please try again or contact via email/Telegram directly.');
+      }
     } catch (error) {
       console.error('Error submitting form:', error);
+      alert('Failed to send message. Please try again or contact via email/Telegram directly.');
     } finally {
       setIsSubmitting(false);
     }

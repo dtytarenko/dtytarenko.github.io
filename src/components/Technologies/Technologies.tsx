@@ -1,48 +1,12 @@
-import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
 import { technologiesData } from '../../utils/data';
-import ThreeBackground from '../Hero/ThreeBackground';
+import TerminalBackground from '../Hero/TerminalBackground';
 import styles from './Technologies.module.scss';
 
 function Technologies() {
-  const container = {
-    hidden: {},
-    show: {
-      transition: {
-        staggerChildren: 0.06,
-        delayChildren: 0.1,
-      },
-    },
-  };
-
-  const item = {
-    hidden: {
-      opacity: 0,
-      scale: 0.5,
-      y: 30,
-      rotateY: -25,
-    },
-    show: {
-      opacity: 1,
-      scale: 1,
-      y: 0,
-      rotateY: 0,
-      transition: {
-        type: 'spring' as const,
-        stiffness: 220,
-        damping: 20,
-        mass: 0.9,
-      },
-    },
-  };
-
   return (
     <section className={styles.technologies} id="technologies">
-      <div className={styles.canvas}>
-        <Canvas camera={{ position: [0, 0, 5] }}>
-          <ThreeBackground />
-        </Canvas>
-      </div>
+      <TerminalBackground />
 
       <div className="container">
         <motion.h2
@@ -55,16 +19,13 @@ function Technologies() {
           Technologies & Tools
         </motion.h2>
 
-        <motion.div
-          className={styles.grid}
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true, amount: 0.1 }}
-          style={{ perspective: 800 }}
-        >
-          {technologiesData.map((tech) => (
-            <motion.div key={tech.id} className={styles.item} variants={item}>
+        <div className={styles.grid}>
+          {technologiesData.map((tech, index) => (
+            <div
+              key={tech.id}
+              className={styles.item}
+              style={{ animationDelay: `${index * 0.06}s` }}
+            >
               <div className={styles.iconWrapper}>
                 <img
                   src={`https://cdn.simpleicons.org/${tech.icon}${tech.icon === 'nextdotjs' ? '/white' : ''}`}
@@ -73,9 +34,9 @@ function Technologies() {
                 />
               </div>
               <p className={styles.name}>{tech.name}</p>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

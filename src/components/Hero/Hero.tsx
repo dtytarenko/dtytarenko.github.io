@@ -1,13 +1,9 @@
-import { useState } from 'react';
+import { Canvas } from '@react-three/fiber';
 import { motion } from 'framer-motion';
-import TerminalBackground from './TerminalBackground';
-import DNABackground from './DNABackground';
+import FluidGradient from './FluidGradient';
 import styles from './Hero.module.scss';
 
-type BgVariant = 'terminal' | 'dna';
-
 function Hero() {
-  const [bg, setBg] = useState<BgVariant>('terminal');
   const scrollToPortfolio = () => {
     document.getElementById('portfolio')?.scrollIntoView({ behavior: 'smooth' });
   };
@@ -82,23 +78,10 @@ function Hero() {
 
   return (
     <section className={styles.hero} id="hero">
-      {bg === 'terminal' ? <TerminalBackground /> : <DNABackground />}
-
-      <div className={styles.bgSwitcher}>
-        <button
-          className={`${styles.bgBtn} ${bg === 'terminal' ? styles.bgBtnActive : ''}`}
-          onClick={() => setBg('terminal')}
-          aria-label="Terminal background"
-        >
-          Terminal
-        </button>
-        <button
-          className={`${styles.bgBtn} ${bg === 'dna' ? styles.bgBtnActive : ''}`}
-          onClick={() => setBg('dna')}
-          aria-label="DNA background"
-        >
-          DNA
-        </button>
+      <div className={styles.canvas}>
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} orthographic={false}>
+          <FluidGradient />
+        </Canvas>
       </div>
 
       <motion.div

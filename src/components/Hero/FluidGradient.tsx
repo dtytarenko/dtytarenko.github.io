@@ -1,15 +1,14 @@
 import { useRef, useMemo, Suspense, useState } from 'react';
-import { useFrame, useThree } from '@react-three/fiber';
+import { useFrame } from '@react-three/fiber';
 import { useGLTF, Clone } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Black hole component using 3D model
-function BlackHoleModel({ side = 'left' }: { side?: 'left' | 'right' }) {
+function BlackHoleModel() {
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
-  const { viewport } = useThree();
 
-  // Load the GLB model (shared between instances)
+  // Load the GLB model
   const gltf = useGLTF('/models/blackhole.glb');
 
   useFrame((state) => {
@@ -17,40 +16,11 @@ function BlackHoleModel({ side = 'left' }: { side?: 'left' | 'right' }) {
 
     if (groupRef.current) {
       // Base rotation
-      groupRef.current.rotation.y = time * 0.15;
+      groupRef.current.rotation.y = time * 0.2;
 
-      // Interactive mouse movement
-      const mouseX = state.mouse.x * viewport.width / 2;
-      const mouseY = state.mouse.y * viewport.height / 2;
-
-      // Position based on side
-      const baseX = side === 'left'
-        ? -viewport.width / 2 - 6
-        : viewport.width / 2 + 6;
-
-      // Smooth follow mouse position
-      groupRef.current.position.x = THREE.MathUtils.lerp(
-        groupRef.current.position.x,
-        baseX + mouseX * 0.02,
-        0.05
-      );
-      groupRef.current.position.y = THREE.MathUtils.lerp(
-        groupRef.current.position.y,
-        mouseY * 0.2,
-        0.05
-      );
-
-      // Tilt based on mouse position
-      groupRef.current.rotation.x = THREE.MathUtils.lerp(
-        groupRef.current.rotation.x,
-        Math.PI / 2 + mouseY * 0.1,
-        0.05
-      );
-      groupRef.current.rotation.z = THREE.MathUtils.lerp(
-        groupRef.current.rotation.z,
-        mouseX * 0.1,
-        0.05
-      );
+      // Subtle tilt animation
+      groupRef.current.rotation.x = Math.PI / 2 + Math.sin(time * 0.3) * 0.05;
+      groupRef.current.rotation.z = Math.sin(time * 0.4) * 0.03;
 
       // Scale on hover
       const targetScale = hovered ? 2.8 : 2.5;
@@ -64,7 +34,7 @@ function BlackHoleModel({ side = 'left' }: { side?: 'left' | 'right' }) {
   return (
     <group
       ref={groupRef}
-      position={[0, 0, -15]}
+      position={[0, 0, -12]}
       scale={2.5}
       rotation={[Math.PI / 2, 0, 0]}
       onPointerOver={() => setHovered(true)}
@@ -87,14 +57,18 @@ function BlackHoleModel({ side = 'left' }: { side?: 'left' | 'right' }) {
 function FluidGradient() {
   const starsRef = useRef<THREE.Points>(null);
 
-  // Create starfield
+  // Create starfield (optimized count for mobile)
   const starsGeometry = useMemo(() => {
     const geometry = new THREE.BufferGeometry();
     const vertices = [];
     const colors = [];
     const sizes = [];
 
-    for (let i = 0; i < 5000; i++) {
+    // Reduce stars on mobile for performance
+    const isMobile = window.innerWidth < 768;
+    const starCount = isMobile ? 1500 : 3000;
+
+    for (let i = 0; i < starCount; i++) {
       // Spherical distribution
       const radius = 50 + Math.random() * 50;
       const theta = Math.random() * Math.PI * 2;
@@ -154,10 +128,9 @@ function FluidGradient() {
           />
         </points>
 
-        {/* Black holes - left and right */}
+        {/* Black hole - centered */}
         <Suspense fallback={null}>
-          <BlackHoleModel side="left" />
-          <BlackHoleModel side="right" />
+          <BlackHoleModel />
         </Suspense>
 
         {/* Ambient lighting */}
