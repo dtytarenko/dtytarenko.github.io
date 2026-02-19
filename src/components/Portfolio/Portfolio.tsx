@@ -1,7 +1,9 @@
 import { Swiper, SwiperSlide } from 'swiper/react';
 import { Navigation, Autoplay, EffectCoverflow } from 'swiper/modules';
 import { motion } from 'framer-motion';
+import { Canvas } from '@react-three/fiber';
 import { portfolioData } from '../../utils/data';
+import FluidGradient from '../Hero/FluidGradient';
 import styles from './Portfolio.module.scss';
 
 // @ts-ignore - CSS imports don't have types
@@ -14,6 +16,12 @@ import 'swiper/css/effect-coverflow';
 function Portfolio() {
   return (
     <section className={styles.portfolio} id="portfolio">
+      <div className={styles.canvas}>
+        <Canvas camera={{ position: [0, 0, 5], fov: 75 }} orthographic={false}>
+          <FluidGradient />
+        </Canvas>
+      </div>
+
       <div className="container">
         <motion.h2
           className={styles.title}

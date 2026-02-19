@@ -4,44 +4,36 @@ import { technologiesData } from '../../utils/data';
 import ThreeBackground from '../Hero/ThreeBackground';
 import styles from './Technologies.module.scss';
 
-// Icon mapping - використовуємо емодзі як fallback
-const iconMap: Record<string, string> = {
-  html: '🌐',
-  css: '🎨',
-  js: '⚡',
-  react: '⚛️',
-  typescript: '📘',
-  threejs: '🎮',
-  sass: '💅',
-  less: '🔷',
-  stylus: '✒️',
-  gulp: '🥤',
-  webpack: '📦',
-  vite: '⚡',
-  drupal: '💧',
-  wp: '📝',
-  git: '🔀',
-  npm: '📮',
-  jquery: '💲',
-  bootstrap: '🅱️',
-  figma: '🎨',
-  ps: '🖼️',
-};
-
 function Technologies() {
   const container = {
-    hidden: { opacity: 0 },
+    hidden: {},
     show: {
-      opacity: 1,
       transition: {
-        staggerChildren: 0.05,
+        staggerChildren: 0.06,
+        delayChildren: 0.1,
       },
     },
   };
 
   const item = {
-    hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0 },
+    hidden: {
+      opacity: 0,
+      scale: 0.5,
+      y: 30,
+      rotateY: -25,
+    },
+    show: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      rotateY: 0,
+      transition: {
+        type: 'spring' as const,
+        stiffness: 220,
+        damping: 20,
+        mass: 0.9,
+      },
+    },
   };
 
   return (
@@ -68,12 +60,17 @@ function Technologies() {
           variants={container}
           initial="hidden"
           whileInView="show"
-          viewport={{ once: true }}
+          viewport={{ once: true, amount: 0.1 }}
+          style={{ perspective: 800 }}
         >
           {technologiesData.map((tech) => (
             <motion.div key={tech.id} className={styles.item} variants={item}>
               <div className={styles.iconWrapper}>
-                <div className={styles.icon}>{iconMap[tech.icon] || '⚙️'}</div>
+                <img
+                  src={`https://cdn.simpleicons.org/${tech.icon}${tech.icon === 'nextdotjs' ? '/white' : ''}`}
+                  alt={tech.name}
+                  className={styles.icon}
+                />
               </div>
               <p className={styles.name}>{tech.name}</p>
             </motion.div>

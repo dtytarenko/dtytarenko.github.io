@@ -44,16 +44,6 @@ function App() {
       <Suspense fallback={<LoadingSpinner />}>
         <ContactForm />
       </Suspense>
-
-      <footer style={{
-        textAlign: 'center',
-        padding: 'var(--spacing-md) 0',
-        background: 'var(--color-bg-secondary)',
-        color: 'var(--color-text-secondary)',
-        fontSize: 'var(--font-size-sm)'
-      }}>
-        <p>© {new Date().getFullYear()} Dmytro Tytarenko. All rights reserved.</p>
-      </footer>
     </div>
   );
 }

@@ -2,6 +2,7 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { motion } from 'framer-motion';
 import { ContactFormData } from '../../types';
+import MatrixBackground from '../Hero/MatrixBackground';
 import styles from './ContactForm.module.scss';
 
 function ContactForm() {
@@ -41,7 +42,8 @@ function ContactForm() {
 
   return (
     <section className={styles.contact} id="contact">
-      <div className="container">
+      <MatrixBackground />
+      <div className={`container ${styles.inner}`}>
         <motion.h2
           className={styles.title}
           initial={{ opacity: 0, y: 20 }}
@@ -63,11 +65,66 @@ function ContactForm() {
         </motion.p>
 
         <motion.div
+          className={styles.contactOptions}
+          initial={{ opacity: 0, y: 20 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+        >
+          <h3 className={styles.optionsTitle}>Contact me right now</h3>
+          <div className={styles.links}>
+            <a
+              href="https://linkedin.com/in/dtytarenko"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contactLink}
+              aria-label="Contact via LinkedIn"
+            >
+              <svg
+                className={styles.contactIcon}
+                viewBox="0 0 24 24"
+                fill="white"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433a2.062 2.062 0 0 1-2.063-2.065 2.064 2.064 0 1 1 2.063 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+              </svg>
+              <span>LinkedIn</span>
+            </a>
+            <a
+              href="https://t.me/dtytarenko"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={styles.contactLink}
+              aria-label="Contact via Telegram"
+            >
+              <img
+                src="https://cdn.simpleicons.org/telegram/white"
+                alt="Telegram"
+                className={styles.contactIcon}
+              />
+              <span>Telegram</span>
+            </a>
+            <a
+              href="mailto:dtytarenko@protonmail.com"
+              className={styles.contactLink}
+              aria-label="Contact via Email"
+            >
+              <img
+                src="https://cdn.simpleicons.org/protonmail/white"
+                alt="Email"
+                className={styles.contactIcon}
+              />
+              <span>dtytarenko@protonmail.com</span>
+            </a>
+          </div>
+        </motion.div>
+
+        <motion.div
           className={styles.formWrapper}
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.6, delay: 0.4 }}
+          transition={{ duration: 0.6, delay: 0.5 }}
         >
           {isSuccess && (
             <motion.div

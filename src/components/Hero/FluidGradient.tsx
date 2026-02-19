@@ -1,15 +1,15 @@
 import { useRef, useMemo, Suspense, useState } from 'react';
 import { useFrame, useThree } from '@react-three/fiber';
-import { useGLTF } from '@react-three/drei';
+import { useGLTF, Clone } from '@react-three/drei';
 import * as THREE from 'three';
 
 // Black hole component using 3D model
-function BlackHoleModel() {
+function BlackHoleModel({ side = 'left' }: { side?: 'left' | 'right' }) {
   const groupRef = useRef<THREE.Group>(null);
   const [hovered, setHovered] = useState(false);
   const { viewport } = useThree();
 
-  // Load the GLB model
+  // Load the GLB model (shared between instances)
   const gltf = useGLTF('/models/blackhole.glb');
 
   useFrame((state) => {
@@ -23,15 +23,20 @@ function BlackHoleModel() {
       const mouseX = state.mouse.x * viewport.width / 2;
       const mouseY = state.mouse.y * viewport.height / 2;
 
+      // Position based on side
+      const baseX = side === 'left'
+        ? -viewport.width / 2 - 6
+        : viewport.width / 2 + 6;
+
       // Smooth follow mouse position
       groupRef.current.position.x = THREE.MathUtils.lerp(
         groupRef.current.position.x,
-        mouseX * 0.3,
+        baseX + mouseX * 0.02,
         0.05
       );
       groupRef.current.position.y = THREE.MathUtils.lerp(
         groupRef.current.position.y,
-        mouseY * 0.3,
+        mouseY * 0.2,
         0.05
       );
 
@@ -65,7 +70,7 @@ function BlackHoleModel() {
       onPointerOver={() => setHovered(true)}
       onPointerOut={() => setHovered(false)}
     >
-      <primitive object={gltf.scene} />
+      <Clone object={gltf.scene} />
       {/* Main directional light */}
       <directionalLight position={[0, 10, 5]} intensity={2.5} color="#ffffff" />
       <directionalLight position={[0, -10, 5]} intensity={1.5} color="#6699ff" />
@@ -156,7 +161,7 @@ function ProceduralBlackHole({ groupRef }: { groupRef: React.RefObject<THREE.Gro
   });
 
   return (
-    <group ref={groupRef} position={[0, 0, -8]}>
+    <group ref={groupRef} position={[-12, 0, -8]}>
       {/* Black hole sphere */}
       <mesh>
         <sphereGeometry args={[2.2, 128, 128]} />
@@ -281,9 +286,10 @@ function FluidGradient() {
           />
         </points>
 
-        {/* Black hole */}
+        {/* Black holes - left and right */}
         <Suspense fallback={null}>
-          <BlackHoleModel />
+          <BlackHoleModel side="left" />
+          <BlackHoleModel side="right" />
         </Suspense>
 
         {/* Ambient lighting */}
