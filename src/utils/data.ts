@@ -1,15 +1,69 @@
 import { PortfolioItem, Technology } from '../types';
 
-// Import images
+// Import images (webp format for better performance)
 import giftcardsImg from '../assets/images/giftcards.jpg';
-import dinercadeauImg from '../assets/images/dinercadeau.jpg';
-import ccImg from '../assets/images/cc.jpg';
+import dinercadeauImg from '../assets/images/dinercadeau.webp';
+import ccImg from '../assets/images/cc.webp';
 import cadeaubonImg from '../assets/images/cadeaubon.jpg';
-import aauImg from '../assets/images/aau.jpg';
+import aauImg from '../assets/images/aau.webp';
+import kennersoftImg from '../assets/images/kennersoft.webp';
+import elektroWandeltImg from '../assets/images/elektro-wandelt.webp';
+import gardixImg from '../assets/images/gardix.webp';
+import jamcardImg from '../assets/images/jamcard.webp';
+import likeangelImg from '../assets/images/likeangel.webp';
+import tetracodeImg from '../assets/images/tetracode.webp';
 
 export const portfolioData: PortfolioItem[] = [
   {
     id: 1,
+    title: 'Tetracode.io',
+    description: 'Modern landing page for IT company with interactive animations and smooth UX',
+    image: tetracodeImg,
+    url: 'https://tetracode.io/',
+    technologies: ['React', 'Next.js', 'TypeScript', 'Vite', 'WordPress']
+  },
+  {
+    id: 2,
+    title: 'Jamcard.io',
+    description: 'Crypto wallet platform with modern blockchain integration',
+    image: jamcardImg,
+    url: 'https://jamcard.io/',
+    technologies: ['WordPress', 'PHP', 'JavaScript', 'WooCommerce']
+  },
+  {
+    id: 3,
+    title: 'Gardix Systems',
+    description: 'Car security and protection application platform',
+    image: gardixImg,
+    url: 'https://gardix.systems/',
+    technologies: ['WordPress', 'PHP', 'JavaScript']
+  },
+  {
+    id: 4,
+    title: 'Likeangel.com.ua',
+    description: 'E-commerce fashion store with modern UX and payment integration',
+    image: likeangelImg,
+    url: 'https://likeangel.com.ua/',
+    technologies: ['WordPress', 'WooCommerce', 'PHP', 'Sass', 'Gulp', 'JavaScript']
+  },
+  {
+    id: 5,
+    title: 'Kennersoft.de',
+    description: 'E-commerce platform for software solutions',
+    image: kennersoftImg,
+    url: 'https://kennersoft.de/',
+    technologies: ['Shopware', 'PHP', 'JavaScript', 'MySQL', 'Bootstrap']
+  },
+  {
+    id: 6,
+    title: 'Elektro-Wandelt.de',
+    description: 'High-load e-commerce platform with 150,000+ monthly users for electrical equipment distribution',
+    image: elektroWandeltImg,
+    url: 'https://www.elektro-wandelt.de/',
+    technologies: ['OXID', 'PHP', 'JavaScript', 'MySQL', 'Bootstrap']
+  },
+  {
+    id: 7,
     title: 'Giftcards.nl',
     description: 'E-commerce site based on Drupal with 200,000+ unique visitors per month for Cadeau Concepten NL (Amsterdam)',
     image: giftcardsImg,
@@ -17,7 +71,7 @@ export const portfolioData: PortfolioItem[] = [
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
   {
-    id: 2,
+    id: 8,
     title: 'Dinercadeau.nl',
     description: 'E-commerce site based on Drupal for Cadeau Concepten NL (Amsterdam)',
     image: dinercadeauImg,
@@ -25,7 +79,7 @@ export const portfolioData: PortfolioItem[] = [
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
   {
-    id: 3,
+    id: 9,
     title: 'Cadeauconcepten.nl',
     description: 'Landing-page for Cadeau Concepten NL (Amsterdam)',
     image: ccImg,
@@ -33,7 +87,7 @@ export const portfolioData: PortfolioItem[] = [
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp']
   },
   {
-    id: 4,
+    id: 10,
     title: 'Cadeaubon.nl',
     description: 'E-commerce site based on Drupal for Cadeau Concepten NL (Amsterdam)',
     image: cadeaubonImg,
@@ -41,7 +95,7 @@ export const portfolioData: PortfolioItem[] = [
     technologies: ['HTML5', 'CSS3', 'Stylus', 'JavaScript', 'Gulp', 'Drupal']
   },
   {
-    id: 5,
+    id: 11,
     title: 'UAA',
     description: 'Website for Association of Advocates of Ukraine',
     image: aauImg,
@@ -75,6 +129,7 @@ export const technologiesData: Technology[] = [
   { id: 19, name: 'WooCommerce', icon: 'woocommerce', category: 'backend' },
   { id: 20, name: 'Drupal', icon: 'drupal', category: 'backend' },
   { id: 21, name: 'Shopware', icon: 'shopware', category: 'backend' },
+  { id: 29, name: 'OXID', icon: 'php', category: 'backend' },
 
   // DevOps & Tools
   { id: 22, name: 'Git', icon: 'git', category: 'tools' },

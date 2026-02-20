@@ -101,15 +101,17 @@ function Portfolio() {
                         </span>
                       ))}
                     </div>
-                    <a
-                      href={item.url}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className={styles.link}
-                      aria-label={`Visit ${item.title} website`}
-                    >
-                      Visit Website →
-                    </a>
+                    <div className={styles.linkWrapper}>
+                      <a
+                        href={item.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className={styles.link}
+                        aria-label={`Visit ${item.title} website`}
+                      >
+                        Visit Website →
+                      </a>
+                    </div>
                   </div>
                 </div>
               </SwiperSlide>

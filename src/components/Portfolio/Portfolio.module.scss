@@ -59,9 +59,14 @@
     overflow: visible;
   }
 
+  :global(.swiper-slide) {
+    pointer-events: auto;
+  }
+
   :global(.swiper-button-next),
   :global(.swiper-button-prev) {
     color: var(--color-accent);
+    z-index: 10;
 
     &::after {
       font-size: 30px;
@@ -79,6 +84,10 @@
   overflow: visible;
   transition: box-shadow var(--transition-base);
   height: auto;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
 
   &:hover {
     box-shadow: 0 20px 40px rgba(255, 255, 255, 0.15);
@@ -99,6 +108,9 @@
   height: 100%;
   object-fit: cover;
   transition: transform var(--transition-slow);
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-drag: none;
 
   .slide:hover & {
     transform: scale(1.05);
@@ -107,6 +119,8 @@
 
 .content {
   padding: var(--spacing-lg);
+  position: relative;
+  z-index: 5;
 
   @media (max-width: 768px) {
     padding: var(--spacing-md);
@@ -150,8 +164,16 @@
   color: rgba(255, 255, 255, 0.8);
 }
 
+.linkWrapper {
+  position: relative;
+  z-index: 20;
+  text-align: center;
+  margin-top: var(--spacing-sm);
+  isolation: isolate;
+}
+
 .link {
-  display: block;
+  display: inline-block;
   text-align: center;
   padding: var(--spacing-xs) var(--spacing-md);
   background: var(--color-accent);
@@ -160,13 +182,16 @@
   font-weight: 600;
   font-size: var(--font-size-sm);
   transition: all var(--transition-base);
-  margin: 0 auto;
-  max-width: max-content;
+  position: relative;
+  z-index: 999;
+  text-decoration: none;
+  cursor: pointer;
+  pointer-events: auto;
 
   &:hover {
-    background: var(--color-accent-hover);
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
     transform: translateX(4px);
-    box-shadow: 0 4px 12px rgba(59, 130, 246, 0.3);
+    box-shadow: 0 4px 20px rgba(102, 126, 234, 0.5);
   }
 
   @media (max-width: 768px) {
